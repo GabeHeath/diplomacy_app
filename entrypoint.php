@@ -10,8 +10,10 @@
 <body>
 
 <?php
+include '../../php-lib/config.php';
+
 // Create connection
-$con=mysqli_connect("localhost","root","PGSmst11","diplomacy");
+$con=mysqli_connect("$mysql_host","$mysql_login","$mysql_pw","$mysql_db");
 
 // Check connection
 if (mysqli_connect_errno())
@@ -41,15 +43,17 @@ Hi
 var phpOutput="<?php echo $contents; ?>";
 
 
-
 $(function () {
         $('#container').highcharts({
+	    chart: {
+		type: 'spline'
+	    },
             title: {
-                text: 'Monthly Average Temperature',
+                text: 'Bi-Annual Diplomacy Rating',
                 x: -20 //center
             },
             subtitle: {
-                text: 'Source: WorldClimate.com',
+                text: 'Source: Gabe',
                 x: -20
             },
             xAxis: {
@@ -58,7 +62,7 @@ $(function () {
             },
             yAxis: {
                 title: {
-                    text: 'Temperature (°C)'
+                    text: 'Rating'
                 },
                 plotLines: [{
                     value: 0,
@@ -94,6 +98,7 @@ $(function () {
 
 
 </script>
+
 
 
 <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
