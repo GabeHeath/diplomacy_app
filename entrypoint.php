@@ -11,31 +11,7 @@
 
 <?php
 include '../../php-lib/config.php';
-
-// Create connection
-$con=mysqli_connect("$mysql_host","$mysql_login","$mysql_pw","$mysql_db");
-
-// Check connection
-if (mysqli_connect_errno())
-  {
-  echo "Failed to connect to MySQL: " . mysqli_connect_error();
-  }
-
-$result = mysqli_query($con,"SELECT * FROM stats WHERE name='Andrew'");
-
-while($row = mysqli_fetch_array($result))
-  {
-  echo  $data[] = $row['rating'];
-  echo "<br>";
-  }
-
-ob_start();
-echo json_encode($data, JSON_NUMERIC_CHECK);
-$contents = ob_get_contents();
-ob_end_clean();
-echo $contents;
-
-mysqli_close($con);
+include '../db.php';
 ?>
 
 Hi
@@ -84,7 +60,7 @@ $(function () {
                 data: <?php echo $contents; ?>
             }, {
                 name: 'New York',
-                data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5]
+                data: <?php echo $contents; ?>
             }, {
                 name: 'Berlin',
                 data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0]
